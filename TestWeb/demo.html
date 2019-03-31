@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./jquery-1.12.4.js"></script>
+    <!-- 基于JSONP -->
+    <!-- 手动追加<script>标签进行请求，并操作数据 -->
+    <!-- <script>
+        //服务器回传js中调用该方法，并传入所需数据data
+        function callback(data){
+            alert('服务器传回数据：\n'+data.id+" "+data.name);
+        }
+        //请求发起方法
+        function getServerData(){
+            $("body").append("<script src='http://localhost:8080/simple?cb=callback'><\/script>");//cb参数告诉服务器回调方法名称
+        }
+        getServerData();
+    </script> -->
+
+    <!-- 使用jQuery封装JSONP请求 -->
+    <!-- <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/simple",
+            dataType: "jsonp",
+            jsonp: "callback",
+            success: function (data) {
+                alert('服务器传回数据：\n'+data.id+" "+data.name);
+            }
+        });
+    </script> -->
+
+    <!-- 基于CORS -->
+    <!-- 简单请求 -->
+    <!-- <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/corsapi",
+            success: function(data){
+                alert(data);
+            },
+            error: function(){
+                alert("请求失败");
+            }
+        });
+    </script> -->
+    <!-- 非简单请求 -->
+    <!-- <script>
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/cors-no-simple",
+            contentType: "application/json",
+            data: '{"id":3,"name":"alice"}',
+            success: function(data){
+                alert(data);
+            },
+            error: function(){
+                alert("请求失败");
+            }
+        })
+    </script> -->
+    <!-- 测试SpringMVC注解@CrossOrigin -->
+    <script>
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/test-cross-annotation",
+            contentType: "application/json",
+            data: '{"id":2,"name":"Jack"}',
+            success: function(data){
+                alert(data);
+            },
+            error: function(){
+                alert("请求失败");
+            }
+        })
+    </script>
+</body>
+</html>
